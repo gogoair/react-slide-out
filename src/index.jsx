@@ -8,18 +8,16 @@ export default class SlideModal extends Component {
 		title: PropTypes.string,
 		footer: PropTypes.node,
 		children: PropTypes.node,
-		offset: PropTypes.shape({
+		verticalOffset: PropTypes.shape({
 			top: PropTypes.number,
-			bottom: PropTypes.number,
-			left: PropTypes.number,
-			right: PropTypes.number
+			bottom: PropTypes.number
 		})
 	};
 
 	constructor (props) {
 		super(props);
 		let contentStyle;
-		const offset = props.offset;
+		const offset = props.verticalOffset;
 		const verticalOffset = offset ? (offset.top ? offset.top : 0) + (offset.bottom ? offset.bottom : 0) : 0;
 		if (!this.props.footer && !this.props.title) {
 			contentStyle = {height: `calc(100vh - ${verticalOffset}px)`};
@@ -86,19 +84,15 @@ export default class SlideModal extends Component {
 				onAnimationEnd={this.onAnimationEnd}
 				className={'SlideWrapper js-slideWrapper' + ' ' + this.state.wrapperClass}
 				onClick={this.onWrapperClick}
-				style={this.props.offset ? {
-					top: this.props.offset.top,
-					bottom: this.props.offset.bottom,
-					left: this.props.offset.left,
-					right: this.props.offset.right
+				style={this.props.verticalOffset ? {
+					top: this.props.verticalOffset.top,
+					bottom: this.props.verticalOffset.bottom
 				} : {}}
 			>
 				<div className={'SlideModal ' + this.state.sliderClass}
-					style={this.props.offset ? {
-						top: this.props.offset.top,
-						bottom: this.props.offset.bottom,
-						left: this.props.offset.left,
-						right: this.props.offset.right
+					style={this.props.verticalOffset ? {
+						top: this.props.verticalOffset.top,
+						bottom: this.props.verticalOffset.bottom
 					} : {}}>
 					<div className='h-displayFlex h-flexCol h-flexSpaceBetween'>
 						{this.props.title &&
