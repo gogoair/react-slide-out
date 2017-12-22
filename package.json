@@ -14,8 +14,8 @@
   "main": "./lib/index.jsx",
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.js  --hot --progress --colors --port 8081 --open",
-    "test": "mocha -r mock-local-storage --compilers js:babel-core/register --require ./src/test/testInitialization.js \"src/test/**/*@(.test.js|.test.jsx)\"",
-    "prepublish": "rm -rf ./lib && mkdir lib && cp ./src/styles/index.css ./lib && ./node_modules/.bin/babel src/index.jsx --out-file lib/index.jsx && ./node_modules/.bin/babel lib/index.jsx",
+    "test": "mocha -r mock-local-storage --compilers js:babel-core/register --require ./test/testInitialization.js \"test/**/*@(.test.js|.test.jsx)\"",
+    "prepublish": "npm test && rm -rf ./lib && mkdir lib && cp ./src/index.css ./lib && ./node_modules/.bin/babel src/index.jsx --out-file lib/index.jsx && ./node_modules/.bin/babel lib/index.jsx",
     "postpublish": "rm -rf ./lib",
     "precommit": "npm test"
   },
