@@ -1,0 +1,13 @@
+{
+  "extends": ["standard", "plugin:react/recommended"],
+  "rules": {
+    "semi": "off",
+    "indent": [2, "tab"],
+    "no-tabs": "off"
+  },
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "parser": "babel-eslint"
+}

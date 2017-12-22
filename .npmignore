@@ -1,0 +1,13 @@
+test
+node_modules
+example
+src
+.idea
+.babelrc
+.eslintrc
+.prettierrc
+.gitignore
+.npmignore
+webpack.config.js
+index.html
+npm-debug.log
