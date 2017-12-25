@@ -23,6 +23,7 @@ class Example extends React.Component {
 				<SimpleSlider
 					isOpen={this.state.isOpen}
 					title='Testing example'
+					verticalOffset={{top: 30, bottom: 30}}
 					onOutsideClick={this.closeSlider}
 					footer={<div style={{padding: '15px'}}>This is footer</div>}
 				>

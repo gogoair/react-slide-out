@@ -1,5 +1,5 @@
 # react-slide-out
-Simple lightweight (<2kb) slider component
+Simple lightweight (<2kb) animated slider component.
 
 ## Usability
 ```javascript
@@ -35,33 +35,39 @@ You can play with react-slide-out [>>here<<](https://codesandbox.io/s/6w168n6m83
 ## props/options
 
 #### isOpen
-If passed pane will be render with slide-in animation
+If passed slider will be render with slide-in animation
 ```javascript
 <Slider isOpen />
 ```
 
-#### onToggle
+#### onOutsideClick
 
-onToggle will fire after Accordion expands/collapses with boolean value passed in which will indicated if Accordion is open or closed (true, false)
+It will fire a function if passed when user clicks on "modalWrapper area" (dimmed area)
 ```javascript
-<Accordion onToggle={isOpen => console.log('Is Accordion open?:', isOpen) } /> // if expanded true will be passed
+<Slider isOpen={this.state.isOpen} onOutsideClick={() => this.setState({isOpen: false})} />
 ```
 
 #### title
 
-If passed title will be displayed
+If passed title will be rendered in header wrapper
 ```javascript
-<Accordion title='Some title' />
+<Slider title='test title' />
 ```
 
-#### headerClass/contentWrapperClass
+#### footer
 
-If passed classes will be added to header div and content wrapper div, respectfully. (e.g. 'Accordion__header ' + this.props.headerClass)
-
+If passed footer will be rendered
 ```javascript
-<Accordion headerClass='YourCustomHeaderClass' contentWrapperClass='YourCustomAccordionContentClass' />
+<Slider footer={<div>Some footer element</div>} />
+```
+
+#### verticalOffset
+
+If passed slider and slider wrapper will be offset from top or bottom (e.g. useful when you have navigation/bottom bar and you don't want slider to render on top of it)
+```javascript
+<Slider verticalOffset={{top: 30, bottom: 30}} /> // will render 30px from bottom and top
 ```
 
 ## Example project
 
-Clone/download the repo followed by npm (i) install && npm start, so you can check this magnificent component in local. If you have any comment, suggestion, issue, please report it, as I will try to keep this component alive.
+Clone/download the repo followed by npm (i) install && npm start, so you can check this superior component in local. If you have any comment, suggestion, issue, please report it, as I will try to keep this component alive.

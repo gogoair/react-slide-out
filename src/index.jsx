@@ -96,11 +96,11 @@ export default class SlideModal extends Component {
 					} : {}}>
 					<div className='h-displayFlex h-flexCol h-flexSpaceBetween'>
 						{this.props.title &&
-						(<div className='SlideModal__headerFooter js-slideModalHeader'>
+						(<div className='SlideModal__header js-slideModalHeader'>
 							<h4 className='SlideModal__title'>{this.props.title}</h4>
 						</div>)}
 						<div className={'h-overflowAuto ' + this.state.contentClass} style={this.state.contentStyle}>{this.props.children}</div>
-						{this.props.footer && <div className='SlideModal__headerFooter'>{this.props.footer}</div>}
+						{this.props.footer && <div className='SlideModal__header SlideModal__footer'>{this.props.footer}</div>}
 					</div>
 				</div>
 			</div>
