@@ -1,14 +1,18 @@
 {
-  "extends": ["standard", "plugin:react/recommended"],
+  "env": {
+    "browser": true,
+    "amd": true,
+    "es6": true,
+    "mocha": true,
+    "jquery": true
+  },
+  "parser": "babel-eslint",
   "rules": {
-    "semi": "off",
-    "indent": [2, "tab"],
-    "no-tabs": "off"
+    "no-console": 1,
+    "no-debugger": 1,
+    "no-alert": 1
   },
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
-  "plugins": ["react"],
-  "parser": "babel-eslint"
+  "globals": {
+    "expect": true
+  }
 }

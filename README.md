@@ -1,31 +1,43 @@
-# react-collapsy
-Simple lightweight (1.5kb minified+gzipped) accordion component
+# react-slide-out
+Simple lightweight (<2kb) slider component
 
 ## Usability
-This plugin require for you to have react and font-awesome, after that import react combo select
 ```javascript
-import Accordion from 'react-collapsy';
+import Slider from 'react-slide-out';
 ```
-and include css files
+and include css file
 ```javascript
-require('../node_modules/react-collapsy/lib/index.css');
+import 'react-slide-out/lib/index.css';
 ```
 
 ## Usage
 After you imported libs, somewhere in your component's code:
 ```javascript
-<Accordion>
-    <span>Some content</span>
-</Accordion>
+.
+<a href='#' onClick={() => this.setState({isOpen: true}))}>Open Slider</a>
+.
+<Slider
+      title='test title'
+      footer={
+        <div style={{padding: '15px'}}>
+          <a href='#' onClick={() => this.setState({isOpen: false}))}>Close Slider</a>
+        </div>
+      }
+      isOpen={this.state.isOpen}
+      onOutsideClick={() => this.setState({isOpen: false}))}>
+    <div>...Some heavy scrollable content...</div>
+</Slider>
 
 ```
-![Image of Collapsy](https://media.giphy.com/media/3o751YjTKVOaBINjzy/giphy.gif)
+![Image of Slider](https://media.giphy.com/media/l49JC918AI62TbfuE/giphy.gif)
+
+You can play with react-slide-out [>>here<<](https://codesandbox.io/s/6w168n6m83)
 ## props/options
 
 #### isOpen
-If passed Accordion will be render expanded
+If passed pane will be render with slide-in animation
 ```javascript
-<Accordion isOpen />
+<Slider isOpen />
 ```
 
 #### onToggle
