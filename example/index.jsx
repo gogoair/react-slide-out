@@ -10,19 +10,23 @@ class Example extends React.Component {
 			isOpen: false
 		}
 	}
+
 	openSlider = () => {
 		this.setState({isOpen: true});
-	}
+	};
+
 	closeSlider = () => {
 		this.setState({isOpen: false});
-	}
+	};
+
 	render () {
 		return (
 			<div style={{padding: '30px'}}>
 				<a href='#' style={{fontSize: '22px'}} onClick={this.openSlider}>Open slider</a>
 				<SimpleSlider
 					isOpen={this.state.isOpen}
-					title='Testing example'
+                    header={<div style={{padding: '15px'}}>This is header</div>}
+                    // title='Testing example'
 					verticalOffset={{top: 30, bottom: 30}}
 					onOutsideClick={this.closeSlider}
 					footer={<div style={{padding: '15px'}}>This is footer</div>}

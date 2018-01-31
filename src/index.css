@@ -1,103 +1,117 @@
 .SlideWrapper {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 665; }
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 665;
+}
 
 .SlideWrapper--close {
-  animation: undim 0.4s ease-out forwards; }
+    animation: undim 0.4s ease-out forwards;
+}
 
 .SlideWrapper--open {
-  animation: dim 0.3s ease-out forwards; }
+    animation: dim 0.3s ease-out forwards;
+}
 
 .h-overflowHidden {
-  overflow: hidden !important;
+    overflow: hidden !important;
 }
 
 .h-overflowAuto {
-  overflow: auto !important;
+    overflow: auto !important;
 }
 
 .h-displayFlex {
-  display: flex !important;
+    display: flex !important;
 }
 
 .h-flexCol {
-  flex-direction: column !important;
+    flex-direction: column !important;
 }
 
 .h-flexSpaceBetween {
-  justify-content: space-between !important;
+    justify-content: space-between !important;
 }
 
 .SlideModal {
-  position: fixed;
-  right: -50%;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-  min-width: 320px;
-  background-color: #efefef;
-  z-index: 666; }
+    position: fixed;
+    right: -50%;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    min-width: 320px;
+    background-color: #efefef;
+    z-index: 666;
+}
 
 .SlideModal--open {
-  animation: slideIn 0.3s ease-out forwards; }
-  @media (max-width: 520px) {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+@media (max-width: 520px) {
     .SlideModal--open {
-      width: 100%; } }
+        width: 100%;
+    }
+}
 
 .SlideModal--close {
-  animation: slideOut 0.3s ease-out forwards; }
+    animation: slideOut 0.3s ease-out forwards;
+}
 
 .SlideModal__header {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  overflow: hidden;
-  height: 55px;
-  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2);
-  z-index: 667; }
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    overflow: hidden;
+    height: 55px;
+    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2);
+    z-index: 667;
+}
 
 .SlideModal__footer {
-  box-shadow: 0 -3px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -3px 2px 0 rgba(0, 0, 0, 0.2);
 
 }
 
 .SlideModal__title {
-  padding-left: 15px;
-  color: #000; }
-
-.SlideModal__scrollableContent {
-  height: calc(100vh - 110px); }
-
-.SlideModal__scrollableContentWithoutFooterOrHeader {
-  height: calc(100vh - 55px); }
-
-.SlideModal__scrollableContentWithoutFooterAndHeader {
-  height: calc(100vh); }
+    padding-left: 15px;
+    color: #000;
+}
 
 @keyframes dim {
-  from {
-    background-color: transparent; }
-  to {
-    background-color: rgba(0, 0, 0, 0.5); } }
+    from {
+        background-color: transparent;
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
 
 @keyframes undim {
-  from {
-    background-color: rgba(0, 0, 0, 0.5); }
-  to {
-    background-color: transparent; } }
+    from {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    to {
+        background-color: transparent;
+    }
+}
 
 @keyframes slideIn {
-  0% {
-    right: calc(-100%); }
-  100% {
-    right: 0; } }
+    0% {
+        right: calc(-100%);
+    }
+    100% {
+        right: 0;
+    }
+}
 
 @keyframes slideOut {
-  0% {
-    right: 0; }
-  100% {
-    right: calc(-100%); } }
+    0% {
+        right: 0;
+    }
+    100% {
+        right: calc(-100%);
+    }
+}
