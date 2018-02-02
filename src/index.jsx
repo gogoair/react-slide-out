@@ -20,7 +20,6 @@ export default class SlideModal extends Component {
         let contentStyle;
         const offset = props.verticalOffset;
         const verticalOffset = offset ? (offset.top ? offset.top : 0) + (offset.bottom ? offset.bottom : 0) : 0;
-        console.log(verticalOffset);
         if (!this.props.footer && !this.props.title && !this.props.header) {
             contentStyle = {height: `calc(100vh - ${verticalOffset}px)`};
         } else if (!this.props.footer || (!this.props.title && !this.props.header)) {
@@ -28,7 +27,6 @@ export default class SlideModal extends Component {
         } else {
             contentStyle = {height: `calc(100vh - ${130 + verticalOffset}px)`};
         }
-        console.log(contentStyle);
         this.state = {
             isOpen: !!props.isOpen,
             wrapperClass: 'SlideWrapper--open',
@@ -97,7 +95,7 @@ export default class SlideModal extends Component {
                          top: this.props.verticalOffset.top,
                          bottom: this.props.verticalOffset.bottom
                      } : {}}>
-                    <div className='h-displayFlex h-flexCol h-flexSpaceBetween'>
+                    <div className='h-displayFlex h-flexCol h-flexSpaceBetween' style={{height: '100%'}}>
                         {this.props.title || this.props.header
                             ? <div className='SlideModal__header js-slideModalHeader'>
                                 {this.props.title && <h4 className='SlideModal__title'>{this.props.title}</h4>}
