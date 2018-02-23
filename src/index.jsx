@@ -12,7 +12,14 @@ export default class SlideModal extends Component {
         verticalOffset: PropTypes.shape({
             top: PropTypes.number,
             bottom: PropTypes.number
-        })
+        }),
+      foldWidth: PropTypes.string,
+      foldMode: PropTypes.bool,
+      leftToRight: PropTypes.bool,
+    };
+
+    static defaultProps = {
+      foldWidth: '140px',
     };
 
     constructor(props) {
@@ -20,6 +27,7 @@ export default class SlideModal extends Component {
         let contentStyle;
         const offset = props.verticalOffset;
         const verticalOffset = offset ? (offset.top ? offset.top : 0) + (offset.bottom ? offset.bottom : 0) : 0;
+
         if (!this.props.footer && !this.props.title && !this.props.header) {
             contentStyle = {height: `calc(100vh - ${verticalOffset}px)`};
         } else if (!this.props.footer || (!this.props.title && !this.props.header)) {
@@ -27,8 +35,9 @@ export default class SlideModal extends Component {
         } else {
             contentStyle = {height: `calc(100vh - ${130 + verticalOffset}px)`};
         }
+
         this.state = {
-            isOpen: !!props.isOpen,
+            isOpen: this.props.foldMode ? true : !!props.isOpen,
             wrapperClass: 'SlideWrapper--open',
             sliderClass: 'SlideModal--open',
             contentStyle
@@ -67,47 +76,58 @@ export default class SlideModal extends Component {
     }
 
     onAnimationEnd = e => {
-        if (e.animationName === 'slideOut') {
+        if (e.animationName === 'slideOut--right' || e.animationName === 'slideOut--left') {
             this.setState({isOpen: false});
         }
     };
 
     onWrapperClick = e => {
         const className = e.target.className;
-        if (className.includes('js-slideWrapper') && this.props.onOutsideClick) {
+        if (className.includes('js-slideWrapper') && this.props.onOutsideClick && !this.props.foldMode) {
             this.props.onOutsideClick();
         }
     };
 
     render() {
-        return this.state.isOpen ? (
-            <div
-                onAnimationEnd={this.onAnimationEnd}
-                className={'SlideWrapper js-slideWrapper' + ' ' + this.state.wrapperClass}
-                onClick={this.onWrapperClick}
-                style={this.props.verticalOffset ? {
-                    top: this.props.verticalOffset.top,
-                    bottom: this.props.verticalOffset.bottom
-                } : {}}
-            >
-                <div className={'SlideModal ' + this.state.sliderClass}
-                     style={this.props.verticalOffset ? {
-                         top: this.props.verticalOffset.top,
-                         bottom: this.props.verticalOffset.bottom
-                     } : {}}>
-                    <div className='h-displayFlex h-flexCol h-flexSpaceBetween' style={{height: '100%'}}>
-                        {this.props.title || this.props.header
-                            ? <div className='SlideModal__header js-slideModalHeader'>
-                                {this.props.title && <h4 className='SlideModal__title'>{this.props.title}</h4>}
-                                {this.props.header}
-                              </div>: null}
-                        <div className={'h-overflowAuto ' + this.state.contentClass}
-                             style={this.state.contentStyle}>{this.props.children}</div>
-                        {this.props.footer &&
-                        <div className='SlideModal__header SlideModal__footer'>{this.props.footer}</div>}
-                    </div>
-                </div>
+      const offsetStyle = this.props.verticalOffset ? {
+        top: this.props.verticalOffset.top,
+        bottom: this.props.verticalOffset.bottom
+      } : {};
+
+      const foldStyle = this.props.foldMode && this.props.isFolded ? {
+        width: this.props.foldWidth,
+        minWidth: "auto",
+      } : {};
+
+      const foldOverlayStyles = this.props.foldMode ? {
+        zIndex: "0",
+        position: "static",
+      } : {};
+
+      const sliderDirectionClassName = this.props.leftToRight ? "SlideModal SlideModal--left " : "SlideModal SlideModal--right ";
+
+      return this.state.isOpen || this.props.foldMode ? (
+          <div
+              onAnimationEnd={this.onAnimationEnd}
+              className={'SlideWrapper js-slideWrapper' + ' ' + this.state.wrapperClass}
+              onClick={this.onWrapperClick}
+              style={{...offsetStyle, ...foldOverlayStyles}}
+          >
+            <div className={sliderDirectionClassName + this.state.sliderClass}
+                 style={{...offsetStyle, ...foldStyle}}>
+              <div className='h-displayFlex h-flexCol h-flexSpaceBetween' style={{height: '100%'}}>
+                {this.props.title || this.props.header
+                    ? <div className='SlideModal__header js-slideModalHeader'>
+                      {this.props.title && <h4 className='SlideModal__title'>{this.props.title}</h4>}
+                      {this.props.header}
+                    </div>: null}
+                <div className={'h-overflowAuto ' + this.state.contentClass}
+                     style={this.state.contentStyle}>{this.props.children}</div>
+                {this.props.footer &&
+                <div className='SlideModal__header SlideModal__footer'>{this.props.footer}</div>}
+              </div>
             </div>
-        ) : null;
+          </div>
+      ) : null;
     }
 }

@@ -70,4 +70,86 @@ describe('SlideModal component', () => {
 		expect(cb.calledOnce).to.be.true;
 		slideModal.unmount();
 	});
+
+  it('renders header children', () => {
+    const slideModal = mount(<SlideModal isOpen header={<div className="headerChild" />} />);
+
+    expect(slideModal.find('.headerChild').length).to.equal(1);
+
+    slideModal.unmount();
+  });
+
+  it('is in right to left mode by default', () => {
+    const slideModal = mount(<SlideModal isOpen />);
+
+    expect(slideModal.find('.SlideModal--right').length).to.equal(1);
+    expect(slideModal.find('.SlideModal--left').length).to.equal(0);
+
+    slideModal.unmount();
+  });
+
+  it('enters left to right mode properly', () => {
+    const slideModal = mount(<SlideModal isOpen leftToRight />);
+
+    expect(slideModal.find('.SlideModal--right').length).to.equal(0);
+    expect(slideModal.find('.SlideModal--left').length).to.equal(1);
+
+    slideModal.unmount();
+  });
+
+  it('enters fold mode properly', () => {
+    const slideModal = mount(<SlideModal isOpen={false} foldMode />);
+
+    expect(slideModal.find('.SlideModal').length).to.equal(1);
+
+    slideModal.unmount();
+  });
+
+  it('doesnt close on click outside when in fold mode', () => {
+    const cb = sinon.spy();
+    const slideModal = mount(<SlideModal onOutsideClick={cb} foldMode />);
+
+    slideModal.find('.js-slideWrapper').simulate('click');
+
+    expect(cb.notCalled).to.be.true;
+
+    slideModal.unmount();
+  });
+
+  it('folds properly', () => {
+    const cb = sinon.spy();
+    const slideModal = mount(<SlideModal onOutsideClick={cb} foldMode isFolded />);
+
+
+    expect(slideModal.find('.SlideModal').prop('style')).to.deep.equal({
+      width: "140px",
+      minWidth: "auto"
+    });
+
+    slideModal.unmount();
+  });
+
+  it('unfolds properly', () => {
+    const cb = sinon.spy();
+    const slideModal = mount(<SlideModal onOutsideClick={cb} foldMode />);
+
+
+    expect(slideModal.find('.SlideModal').prop('style')).to.deep.equal({});
+
+    slideModal.unmount();
+  });
+
+  it('folds to passed width', () => {
+    const cb = sinon.spy();
+    const slideModal = mount(<SlideModal onOutsideClick={cb} foldMode isFolded foldWidth={"200px"} />);
+
+
+    expect(slideModal.find('.SlideModal').prop('style')).to.deep.equal({
+      width: "200px",
+      minWidth: "auto"
+    });
+
+    slideModal.unmount();
+  });
+
 });

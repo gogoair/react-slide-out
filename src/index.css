@@ -15,6 +15,14 @@
     animation: dim 0.3s ease-out forwards;
 }
 
+.SlideModal {
+  transition: width 0.3s ease-out;
+}
+
+.h-textRight {
+  text-align: right;
+}
+
 .h-overflowHidden {
     overflow: hidden !important;
 }
@@ -37,7 +45,7 @@
 
 .SlideModal {
     position: fixed;
-    right: -50%;
+    /*right: -50%;*/
     top: 0;
     bottom: 0;
     width: 50%;
@@ -46,8 +54,20 @@
     z-index: 666;
 }
 
-.SlideModal--open {
-    animation: slideIn 0.3s ease-out forwards;
+.SlideModal--right {
+  right: -50%;
+}
+
+.SlideModal--left {
+  left: -50%;
+}
+
+.SlideModal--open.SlideModal--right {
+    animation: slideIn--right 0.3s ease-out forwards;
+}
+
+.SlideModal--open.SlideModal--left {
+  animation: slideIn--left 0.3s ease-out forwards;
 }
 
 @media (max-width: 520px) {
@@ -56,8 +76,12 @@
     }
 }
 
-.SlideModal--close {
-    animation: slideOut 0.3s ease-out forwards;
+.SlideModal--close.SlideModal--right {
+    animation: slideOut--right 0.3s ease-out forwards;
+}
+
+.SlideModal--close.SlideModal--left {
+  animation: slideOut--left 0.3s ease-out forwards;
 }
 
 .SlideModal__header {
@@ -72,7 +96,6 @@
 
 .SlideModal__footer {
     box-shadow: 0 -3px 2px 0 rgba(0, 0, 0, 0.2);
-
 }
 
 .SlideModal__title {
@@ -98,7 +121,7 @@
     }
 }
 
-@keyframes slideIn {
+@keyframes slideIn--right {
     0% {
         right: calc(-100%);
     }
@@ -107,11 +130,29 @@
     }
 }
 
-@keyframes slideOut {
+@keyframes slideOut--right {
     0% {
         right: 0;
     }
     100% {
         right: calc(-100%);
     }
+}
+
+@keyframes slideIn--left {
+  0% {
+    left: calc(-100%);
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slideOut--left {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(-100%);
+  }
 }

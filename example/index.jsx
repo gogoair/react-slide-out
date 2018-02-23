@@ -7,29 +7,38 @@ class Example extends React.Component {
 	constructor () {
 		super();
 		this.state = {
-			isOpen: false
+			isOpen: false,
+      isFolded: false,
 		}
 	}
 
 	openSlider = () => {
-		this.setState({isOpen: true});
+		this.setState({isFolded: !this.state.isFolded});
+    // this.setState({isOpen: true});
 	};
 
 	closeSlider = () => {
-		this.setState({isOpen: false});
+		this.setState({isFolded: false});
+    // this.setState({isOpen: false});
 	};
 
 	render () {
 		return (
 			<div style={{padding: '30px'}}>
-				<a href='#' style={{fontSize: '22px'}} onClick={this.openSlider}>Open slider</a>
+        {/*<div className="h-textRight">*/}
+          {/*<a href='#' style={{fontSize: '22px'}} onClick={this.openSlider}>Open slider</a>*/}
+        {/*</div>*/}
+        <a href='#' style={{fontSize: '22px'}} onClick={this.openSlider}>Open slider</a>
 				<SimpleSlider
-					isOpen={this.state.isOpen}
-                    header={<div style={{padding: '15px'}}>This is header</div>}
-                    // title='Testing example'
-					verticalOffset={{top: 30, bottom: 30}}
-					onOutsideClick={this.closeSlider}
-					footer={<div style={{padding: '15px'}}>This is footer</div>}
+            isOpen={this.state.isOpen}
+            // leftToRight={true}
+            isFolded={this.state.isFolded}
+            foldMode={true}
+            header={<div style={{padding: '15px'}}>This is header</div>}
+            // title='Testing example'
+					  verticalOffset={{top: 30, bottom: 30}}
+					  onOutsideClick={this.closeSlider}
+					  footer={<div style={{padding: '15px'}}>This is footer</div>}
 				>
 					<div style={{padding: '15px'}}>
 						Lorem ipsum dolor sit amet, in has solet dolores, cum dicta impetus lobortis ea, summo officiis ne quo. Quo at harum viderer laoreet, ad per tacimates evertitur interesset, atomorum eleifend sit cu. Ad sed reque pericula, vel omnis scripta ea. Ne populo maiorum est, eu eum sonet suscipit. Nullam mucius urbanitas sit et, suas movet prodesset ne est.
