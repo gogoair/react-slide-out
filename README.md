@@ -68,6 +68,24 @@ If passed slider and slider wrapper will be offset from top or bottom (e.g. usef
 <Slider verticalOffset={{top: 30, bottom: 30}} /> // will render 30px from bottom and top
 ```
 
+#### foldMode
+If passed slider will be enter a "fold" mode, where instead of closing it will fold to certain width(140px default). Note: isOpen and onOutsideClick props will do nothing in this mode and 
+```javascript
+<Slider foldMode />
+```
+
+#### isFolded
+Only works if in fold mode, obviously. Will fold modal to specified width or unfold it to natural width(default false)
+```javascript
+<Slider foldMode isFolded />
+```
+
+#### foldWidth
+Only works if in fold mode, represents the width modal will take if isFolded prop is set to true
+```javascript
+<Slider foldMode isFolded foldWidth="200px" />
+```
+
 ## Example project
 
 Clone/download the repo followed by npm (i) install && npm start, so you can check this superior component in local. If you have any comment, suggestion, issue, please report it, as I will try to keep this component alive.
