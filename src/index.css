@@ -16,11 +16,11 @@
 }
 
 .SlideModal {
-  transition: width 0.3s ease-out;
+    transition: width 0.3s ease-out;
 }
 
 .h-textRight {
-  text-align: right;
+    text-align: right;
 }
 
 .h-overflowHidden {
@@ -55,11 +55,11 @@
 }
 
 .SlideModal--right {
-  right: -50%;
+    right: -50%;
 }
 
 .SlideModal--left {
-  left: -50%;
+    left: -50%;
 }
 
 .SlideModal--open.SlideModal--right {
@@ -67,7 +67,7 @@
 }
 
 .SlideModal--open.SlideModal--left {
-  animation: slideIn--left 0.3s ease-out forwards;
+    animation: slideIn--left 0.3s ease-out forwards;
 }
 
 @media (max-width: 520px) {
@@ -81,7 +81,7 @@
 }
 
 .SlideModal--close.SlideModal--left {
-  animation: slideOut--left 0.3s ease-out forwards;
+    animation: slideOut--left 0.3s ease-out forwards;
 }
 
 .SlideModal__header {
@@ -140,19 +140,19 @@
 }
 
 @keyframes slideIn--left {
-  0% {
-    left: calc(-100%);
-  }
-  100% {
-    left: 0;
-  }
+    0% {
+        left: calc(-100%);
+    }
+    100% {
+        left: 0;
+    }
 }
 
 @keyframes slideOut--left {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: calc(-100%);
-  }
+    0% {
+        left: 0;
+    }
+    100% {
+        left: calc(-100%);
+    }
 }
