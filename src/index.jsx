@@ -82,7 +82,7 @@ export default class SlideModal extends Component {
 	};
 
 	onWrapperClick = e => {
-		const className = e.target.className;
+		const className = e.target.getAttribute("class");
 		if (className.includes('js-slideWrapper') && this.props.onOutsideClick && !this.props.foldMode) {
 			this.props.onOutsideClick();
 		}
