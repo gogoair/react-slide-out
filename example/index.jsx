@@ -13,13 +13,13 @@ class Example extends React.Component {
 	}
 
 	openSlider = () => {
-		this.setState({isFolded: !this.state.isFolded});
-		// this.setState({isOpen: true});
+		// this.setState({isFolded: !this.state.isFolded});
+		this.setState({isOpen: true});
 	};
 
 	closeSlider = () => {
-		this.setState({isFolded: false});
-		// this.setState({isOpen: false});
+		// this.setState({isFolded: false});
+		this.setState({isOpen: false});
 	};
 
 	render () {
@@ -30,10 +30,11 @@ class Example extends React.Component {
 				{/*</div>*/}
 				<a href='#' style={{fontSize: '22px'}} onClick={this.openSlider}>Open slider</a>
 				<SimpleSlider
+                    headerHeight={120}
 					isOpen={this.state.isOpen}
 					// leftToRight={true}
-					isFolded={this.state.isFolded}
-					foldMode={true}
+					// isFolded={this.state.isFolded}
+					// foldMode={true}
 					header={<div style={{padding: '15px'}}>This is header</div>}
 					// title='Testing example'
 					verticalOffset={{top: 30, bottom: 30}}

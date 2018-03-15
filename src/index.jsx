@@ -15,11 +15,15 @@ export default class SlideModal extends Component {
 		}),
 		foldWidth: PropTypes.string,
 		foldMode: PropTypes.bool,
-		leftToRight: PropTypes.bool
+		leftToRight: PropTypes.bool,
+        headerHeight: PropTypes.number,
+        footerHeight: PropTypes.number,
 	};
 
 	static defaultProps = {
-		foldWidth: '140px'
+		foldWidth: '140px',
+        headerHeight: 65,
+        footerHeight: 65,
 	};
 
 	constructor (props) {
@@ -28,13 +32,19 @@ export default class SlideModal extends Component {
 		const offset = props.verticalOffset;
 		const verticalOffset = offset ? (offset.top ? offset.top : 0) + (offset.bottom ? offset.bottom : 0) : 0;
 
-		if (!this.props.footer && !this.props.title && !this.props.header) {
-			contentStyle = {height: `calc(100vh - ${verticalOffset}px)`};
-		} else if (!this.props.footer || (!this.props.title && !this.props.header)) {
-			contentStyle = {height: `calc(100vh - ${65 + verticalOffset}px)`};
-		} else {
-			contentStyle = {height: `calc(100vh - ${130 + verticalOffset}px)`};
-		}
+        let headerFooterHeight;
+
+        if (!this.props.footer && !this.props.title && !this.props.header) {
+            headerFooterHeight = 0;
+        } else if (this.props.footer) {
+            headerFooterHeight = this.props.footerHeight;
+        } else if (this.props.header || this.props.title) {
+            headerFooterHeight = this.props.headerHeight;
+        } else {
+            headerFooterHeight = this.props.footerHeight + this.props.headerHeight;
+        }
+
+        contentStyle = {height: `calc(100vh - ${headerFooterHeight + verticalOffset}px)`};
 
 		this.state = {
 			isOpen: this.props.foldMode ? true : !!props.isOpen,
@@ -116,14 +126,14 @@ export default class SlideModal extends Component {
 					 style={{...offsetStyle, ...foldStyle}}>
 					<div className='h-displayFlex h-flexCol h-flexSpaceBetween' style={{height: '100%'}}>
 						{this.props.title || this.props.header
-							? <div className='SlideModal__header js-slideModalHeader'>
+							? <div className='SlideModal__header js-slideModalHeader' style={{ height: this.props.headerHeight }}>
 								{this.props.title && <h4 className='SlideModal__title'>{this.props.title}</h4>}
 								{this.props.header}
 							</div> : null}
 						<div className={'h-overflowAuto ' + this.state.contentClass}
 							 style={this.state.contentStyle}>{this.props.children}</div>
 						{this.props.footer &&
-						<div className='SlideModal__header SlideModal__footer'>{this.props.footer}</div>}
+						<div className='SlideModal__header SlideModal__footer' style={{ height: this.props.footerHeight }}>{this.props.footer}</div>}
 					</div>
 				</div>
 			</div>

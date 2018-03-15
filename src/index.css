@@ -89,7 +89,6 @@
     align-items: center;
     background-color: #fff;
     overflow: hidden;
-    height: 65px;
     box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2);
     z-index: 667;
 }
